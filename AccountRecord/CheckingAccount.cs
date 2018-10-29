@@ -6,13 +6,12 @@ using System.Threading.Tasks;
 
 namespace AccountRecord
 {
-    class SavingsAccount
+    class CheckingAccount
     {
         //Fields
-        private string accountType = "Savings Account";
-        private string accountOwner = "Joe";
+        private string accountType = "Checking Account";
+        private string accountOwner = "Dan";
         private double balance = 0.0;
-        private double interestRate = 0.02;
 
         //Methods
         public void printDetails()
@@ -20,15 +19,7 @@ namespace AccountRecord
             Console.WriteLine("Account Type: " + accountType);
             Console.WriteLine("Account Owner: " + accountOwner);
             Console.WriteLine("Balance: $" + balance);
-            Console.WriteLine("Interest Rate: " + interestRate);
             Console.WriteLine("");
-        }
-
-        public void earnInterest()
-        {
-            Console.WriteLine("Interest: $" + balance * (interestRate / 12));
-            balance = balance * (1 + interestRate / 12);
-            printDetails();
         }
 
         public void deposit(double x)

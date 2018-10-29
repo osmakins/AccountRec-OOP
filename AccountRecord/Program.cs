@@ -10,7 +10,9 @@ namespace AccountRecord
     {
         static void Main(string[] args)
         {
-            //Create new instance
+            Console.WriteLine("SAVINGS ACCOUNT \n");
+
+            //Create new savings account instance
             SavingsAccount savings1 = new SavingsAccount();
 
             //Call methods on instance
@@ -19,6 +21,19 @@ namespace AccountRecord
             savings1.withdraw(100);
             savings1.earnInterest();
             savings1.earnInterest();
+
+            Console.WriteLine("CHECKING ACCOUNT \n");
+
+            //Create new checking account instance
+            CheckingAccount checking1 = new CheckingAccount();
+
+            //Call methods on instance
+            checking1.printDetails();
+            checking1.deposit(-5000);
+            checking1.deposit(5000);
+            checking1.withdraw(-10000);
+            checking1.withdraw(10000);
+            checking1.withdraw(100);
         }
     }
 }
