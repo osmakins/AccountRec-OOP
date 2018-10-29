@@ -12,11 +12,11 @@ namespace AccountRecord
         {
             Console.WriteLine("SAVINGS ACCOUNT \n");
 
-            //Create new savings account instance
+            //Create new savings account instances
             SavingsAccount savings1 = new SavingsAccount("Joe", 200);
             SavingsAccount savings2 = new SavingsAccount("John", 500);
 
-            //Call methods on instance
+            //Call methods on instances
             savings1.printDetails();
             savings2.printDetails();
 
@@ -26,7 +26,7 @@ namespace AccountRecord
 
             Console.WriteLine("CHECKING ACCOUNT \n");
 
-            //Create new checking account instance
+            //Create new checking account instances
             CheckingAccount checking1 = new CheckingAccount("Dan", 0);
             CheckingAccount checking2 = new CheckingAccount("Dan", 50000);
 
