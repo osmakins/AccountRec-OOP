@@ -8,13 +8,30 @@ namespace AccountRecord
 {
     class SavingsAccount
     {
-        //Fields
+        // Fields
         private string accountType = "Savings Account";
-        private string accountOwner = "Joe";
-        private double balance = 0.0;
-        private double interestRate = 0.02;
+        private string accountOwner;
+        private double balance;
+        private static double interestRate = 0.02;
+        private int accountNum;
+        private static int nextAccountNum = 0;
 
-        //Methods
+        // Constructor
+        public SavingsAccount(string name, double bal)
+        {
+            accountOwner = name;
+            balance = bal;
+            setAccountNumber();
+        }
+
+        // Set account number
+        private void setAccountNumber()
+        {
+            accountNum = nextAccountNum;
+            nextAccountNum++;
+        }
+
+        // Print Method
         public void printDetails()
         {
             Console.WriteLine("Account Type: " + accountType);
@@ -30,7 +47,8 @@ namespace AccountRecord
             balance = balance * (1 + interestRate / 12);
             printDetails();
         }
-
+        
+        // Depositing method
         public void deposit(double x)
         {
             if (x > 0)
@@ -46,6 +64,7 @@ namespace AccountRecord
             }
         }
 
+        // Withdrawal method
         public void withdraw(double x)
         {
             if (x > 0 && (balance - x > 0))

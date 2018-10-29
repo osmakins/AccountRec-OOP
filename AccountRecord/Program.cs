@@ -13,19 +13,22 @@ namespace AccountRecord
             Console.WriteLine("SAVINGS ACCOUNT \n");
 
             //Create new savings account instance
-            SavingsAccount savings1 = new SavingsAccount();
+            SavingsAccount savings1 = new SavingsAccount("Joe", 200);
+            SavingsAccount savings2 = new SavingsAccount("John", 500);
 
             //Call methods on instance
             savings1.printDetails();
+            savings2.printDetails();
+
             savings1.deposit(5000);
-            savings1.withdraw(100);
-            savings1.earnInterest();
+            savings1.withdraw(200);
             savings1.earnInterest();
 
             Console.WriteLine("CHECKING ACCOUNT \n");
 
             //Create new checking account instance
-            CheckingAccount checking1 = new CheckingAccount();
+            CheckingAccount checking1 = new CheckingAccount("Dan", 0);
+            CheckingAccount checking2 = new CheckingAccount("Dan", 50000);
 
             //Call methods on instance
             checking1.printDetails();
@@ -34,6 +37,7 @@ namespace AccountRecord
             checking1.withdraw(-10000);
             checking1.withdraw(10000);
             checking1.withdraw(100);
+            Console.ReadKey();
         }
     }
 }

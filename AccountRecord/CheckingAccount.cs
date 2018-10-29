@@ -8,12 +8,28 @@ namespace AccountRecord
 {
     class CheckingAccount
     {
-        //Fields
+        // Fields
         private string accountType = "Checking Account";
         private string accountOwner = "Dan";
         private double balance = 0.0;
+        private int accountNum;
+        private static int nextAccountNum = 0;
 
-        //Methods
+        // Constructor
+        public CheckingAccount(string name, double bal) {
+            accountOwner = name;
+            balance = bal;
+            setAccountNum();
+        }
+
+        // Set account number
+        private void setAccountNum()
+        {
+            accountNum = nextAccountNum;
+            nextAccountNum++;
+        }
+
+        // Print Method
         public void printDetails()
         {
             Console.WriteLine("Account Type: " + accountType);
@@ -22,6 +38,7 @@ namespace AccountRecord
             Console.WriteLine("");
         }
 
+        // Deposit Method
         public void deposit(double x)
         {
             if (x > 0)
@@ -37,6 +54,7 @@ namespace AccountRecord
             }
         }
 
+        // Withdrawal method
         public void withdraw(double x)
         {
             if (x > 0 && (balance - x > 0))
