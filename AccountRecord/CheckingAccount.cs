@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AccountRecord
 {
@@ -11,7 +7,7 @@ namespace AccountRecord
         // Fields
         private string accountType = "Checking Account";
         
-        // Constructor
+        // Derived Constructor
         public CheckingAccount(string name, double bal) : base(name, bal) { }
 
         // Print Method

@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace AccountRecord
 {
@@ -10,6 +7,7 @@ namespace AccountRecord
     {
         static void Main(string[] args)
         {
+            Application.Run(new AccountRecords());
             Console.WriteLine("SAVINGS ACCOUNT \n");
 
             //Create new savings account instances
