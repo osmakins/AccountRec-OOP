@@ -19,7 +19,7 @@ namespace AccountRecord
             accountListing = L;
             InitializeComponent();
         }
-        
+
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
            
@@ -132,6 +132,71 @@ namespace AccountRecord
                     Console.WriteLine("CLOSING...\n");
                     accountListing.Remove(listChecker);
                     Console.WriteLine("{0} has been removed.\n", listChecker.getAccountOwner());
+                }
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Account number can only be integer numbers!\n");
+            }
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            AccountBase listChecker = null;
+            try
+            {
+                foreach (AccountBase selectAcct in accountListing)
+                {
+                    if (selectAcct.getAccountOwner() == AcctName.Text && selectAcct.getAccountNumber() == Convert.ToInt32(AcctNum.Text))
+                    {
+                        listChecker = selectAcct;
+                    }
+                }
+                if (listChecker == null)
+                {
+                    Console.WriteLine("Please check that you have entered the correct account name and number.\n");
+                }
+                else if(listChecker.getAccountType() == "Savings Account" && listChecker.getBalance() >= 20000)
+                {
+                    listChecker.deposit(20);
+                    Console.WriteLine("Bonus for high savings account\n");
+                }
+                else
+                {
+                    Console.WriteLine("You do not have any bonus\n");
+                }
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Account number can only be integer numbers!\n");
+            }
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            AccountBase listChecker = null;
+            try
+            {
+                foreach (AccountBase selectAcct in accountListing)
+                {
+                    if (selectAcct.getAccountOwner() == AcctName.Text && selectAcct.getAccountNumber() == Convert.ToInt32(AcctNum.Text))
+                    {
+                        listChecker = selectAcct;
+                    }
+                }
+                if (listChecker == null)
+                {
+                    Console.WriteLine("Please check that you have entered the correct account name and number.\n");
+                }
+                else if (listChecker.getAccountType() == "Savings Account")
+                {
+                    var pointer = accountListing.IndexOf(listChecker);
+                    SavingsAccount a = (SavingsAccount) accountListing[pointer];
+                    a.earnInterest();
+                }
+                else
+                {
+                    Console.WriteLine("You have no interest at the moment.\n");
                 }
             }
             catch (FormatException)
