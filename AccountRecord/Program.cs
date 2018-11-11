@@ -1,40 +1,22 @@
 ﻿using System;
 using System.Windows.Forms;
+using System.Collections.Generic;
 
 namespace AccountRecord
 {
     class Program
-    {
+    { 
         static void Main(string[] args)
         {
-            Application.Run(new AccountRecords());
-            Console.WriteLine("SAVINGS ACCOUNT \n");
+            List<AccountBase> accountList = new List<AccountBase>();
+            accountList.Add(new SavingsAccount("Duke", 100));
+            accountList.Add(new SavingsAccount("Hans", 20000));
+            accountList.Add(new SavingsAccount("David", 50000));
+            accountList.Add(new SavingsAccount("Hope", 500));
+            accountList.Add(new CheckingAccount("Grit", 0));
+            accountList.Add(new CheckingAccount("Josh", 500));
 
-            //Create new savings account instances
-            SavingsAccount savings1 = new SavingsAccount("Joe", 200);
-            SavingsAccount savings2 = new SavingsAccount("John", 500);
-
-            //Call methods on instances
-            savings1.printDetails();
-            savings2.printDetails();
-
-            savings1.deposit(5000);
-            savings1.withdraw(200);
-            savings1.earnInterest();
-
-            Console.WriteLine("CHECKING ACCOUNT \n");
-
-            //Create new checking account instances
-            CheckingAccount checking1 = new CheckingAccount("Dan", 0);
-            CheckingAccount checking2 = new CheckingAccount("Dan", 50000);
-
-            //Call methods on instance
-            checking1.printDetails();
-            checking1.deposit(-5000);
-            checking1.deposit(5000);
-            checking1.withdraw(-10000);
-            checking1.withdraw(10000);
-            checking1.withdraw(100);
+            Application.Run(new AccountRecords(accountList));
             Console.ReadKey();
         }
     }

@@ -6,15 +6,20 @@ namespace AccountRecord
     {
         // Fields
         private string accountType = "Savings Account";
-        private static double interestRate = 0.02;
+        private static double interestRate = 0.05;
       
         // Derived Constructor
         public SavingsAccount(string name, double bal) : base(name, bal){ }
 
-        // Print Method
-        new public void printDetails()
+        public override string getAccountType()
         {
-            Console.WriteLine(accountType + " #" + accountNum);
+            return accountType;
+        }
+
+        // Print Method
+        override public void printDetails()
+        {
+            Console.WriteLine("{0}: #{1}", accountType, accountNum);
             base.printDetails();
             Console.WriteLine("");
         }

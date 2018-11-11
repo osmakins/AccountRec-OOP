@@ -10,10 +10,15 @@ namespace AccountRecord
         // Derived Constructor
         public CheckingAccount(string name, double bal) : base(name, bal) { }
 
-        // Print Method
-        new public void printDetails()
+        public override string getAccountType()
         {
-            Console.WriteLine(accountType + " #" + accountNum);
+            return accountType;
+        }
+
+        // Print Method
+        public override void printDetails()
+        {
+            Console.WriteLine("{0}: #{1}", accountType, accountNum);
             base.printDetails();
             Console.WriteLine("");
         }

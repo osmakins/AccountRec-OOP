@@ -8,6 +8,7 @@ namespace AccountRecord
         protected string accountOwner;
         protected double balance;
         protected int accountNum;
+        protected int transactions = 0;
         protected static int nextAccountNum = 0;
 
         // Constructor
@@ -28,10 +29,11 @@ namespace AccountRecord
         }
 
         // Print Method
-        public void printDetails()
-        {
+        public virtual void printDetails()
+        { 
             Console.WriteLine("Account Owner: " + accountOwner);
             Console.WriteLine("Balance: $" + balance);
+            Console.WriteLine("Transactions: " + transactions);
             Console.WriteLine("");
         }
 
@@ -42,7 +44,7 @@ namespace AccountRecord
             {
                 balance = balance + x;
                 Console.WriteLine("Deposit: $" + x);
-                printDetails();
+                transactions++;
             }
             else
             {
@@ -58,7 +60,7 @@ namespace AccountRecord
             {
                 balance = balance - x;
                 Console.WriteLine("Withdraw: $" + x);
-                printDetails();
+                transactions++;
             }
             else if (x < 0)
             {
@@ -72,5 +74,28 @@ namespace AccountRecord
                 Console.WriteLine("");
             }
         }
+
+        //Getter Methods, used to get the values of fields
+        public string getAccountOwner()
+        {
+            return accountOwner;
+        }
+
+        public double getBalance()
+        {
+            return balance;
+        }
+
+        public int getAccountNumber()
+        {
+            return accountNum;
+        }
+
+        public int getTransactions()
+        {
+            return transactions;
+        }
+
+        public abstract string getAccountType();
     }
 }
