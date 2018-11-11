@@ -62,16 +62,16 @@
             // 
             // button8
             // 
-            this.button8.Location = new System.Drawing.Point(483, 282);
+            this.button8.Location = new System.Drawing.Point(462, 279);
             this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(130, 31);
+            this.button8.Size = new System.Drawing.Size(130, 33);
             this.button8.TabIndex = 9;
             this.button8.Text = "Reset Transactions";
             this.button8.UseVisualStyleBackColor = true;
             // 
             // button7
             // 
-            this.button7.Location = new System.Drawing.Point(386, 280);
+            this.button7.Location = new System.Drawing.Point(367, 279);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(75, 33);
             this.button7.TabIndex = 8;
@@ -80,7 +80,7 @@
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(281, 282);
+            this.button6.Location = new System.Drawing.Point(270, 280);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(75, 31);
             this.button6.TabIndex = 7;
@@ -98,12 +98,13 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(483, 229);
+            this.button4.Location = new System.Drawing.Point(499, 231);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(93, 36);
             this.button4.TabIndex = 5;
             this.button4.Text = "Withdraw $200";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // button3
             // 
@@ -113,15 +114,17 @@
             this.button3.TabIndex = 4;
             this.button3.Text = "Deposit $200";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(483, 178);
+            this.button2.Location = new System.Drawing.Point(499, 178);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(93, 34);
             this.button2.TabIndex = 3;
             this.button2.Text = "Close Account";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // AcctNum
             // 
