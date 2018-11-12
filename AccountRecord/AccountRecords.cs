@@ -204,5 +204,64 @@ namespace AccountRecord
                 Console.WriteLine("Account number can only be integer numbers!\n");
             }
         }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            AccountBase listChecker = null;
+            try
+            {
+                foreach (AccountBase selectAcct in accountListing)
+                {
+                    if (selectAcct.getAccountOwner() == AcctName.Text && selectAcct.getAccountNumber() == Convert.ToInt32(AcctNum.Text))
+                    {
+                        listChecker = selectAcct;
+                    }
+                }
+                if (listChecker == null)
+                {
+                    Console.WriteLine("Please check that you have entered the correct account name and number.\n");
+                }
+                else if (listChecker.getAccountType() == "Checking Account" && listChecker.getTransactions() < 1)
+                {
+                    listChecker.withdraw(35);
+                    Console.WriteLine("Fee for not having enough Checking Account transactions.\n");
+                }
+                else
+                {
+                    Console.WriteLine("No charges incurred at the moment.\n");
+                }
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Account number can only be integer numbers!\n");
+            }
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            AccountBase listChecker = null;
+            try
+            {
+                foreach (AccountBase selectAcct in accountListing)
+                {
+                    if (selectAcct.getAccountOwner() == AcctName.Text && selectAcct.getAccountNumber() == Convert.ToInt32(AcctNum.Text))
+                    {
+                        listChecker = selectAcct;
+                    }
+                }
+                if (listChecker == null)
+                {
+                    Console.WriteLine("Please check that you have entered the correct account name and number.\n");
+                }
+                else
+                {
+                    listChecker.resetTransactions(); 
+                }
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Account number can only be integer numbers!\n");
+            }
+        }
     }
 }

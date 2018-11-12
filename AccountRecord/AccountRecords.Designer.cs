@@ -68,6 +68,7 @@
             this.button8.TabIndex = 9;
             this.button8.Text = "Reset Transactions";
             this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
             // button7
             // 
@@ -77,6 +78,7 @@
             this.button7.TabIndex = 8;
             this.button7.Text = "Charge Fee";
             this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // button6
             // 

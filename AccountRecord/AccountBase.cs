@@ -75,6 +75,12 @@ namespace AccountRecord
             }
         }
 
+        public void resetTransactions() {
+            transactions = 0;
+            Console.WriteLine("Resetting Transactions to 0");
+            printDetails();
+        }
+
         //Getter Methods, used to get the values of fields
         public string getAccountOwner()
         {
