@@ -1,6 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 
-namespace AccountRecord
+namespace AccountRecord 
 {
     public abstract class AccountBase
     {

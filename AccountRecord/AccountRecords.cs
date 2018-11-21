@@ -1,262 +1,190 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+
 
 namespace AccountRecord
 {
     public partial class AccountRecords : Form
     {
-        private List<AccountBase> accountListing = new List<AccountBase>();
-       
+        public List<AccountBase> accountListing = new List<AccountBase>();
+
         public AccountRecords(List<AccountBase> L)
         {
             accountListing = L;
             InitializeComponent();
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
+        private static string emptySelection()
         {
-           
+            return "Please check that you have entered the correct account name and number.\n";
         }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
+        private string accountTypeError()
         {
-
+            string accountType = selectedAccount().getAccountType();
+            string accountOwner = selectedAccount().getAccountOwner();
+            return accountOwner + " has " + accountType;
         }
 
+        // Select an Account from the list
+        private AccountBase selectedAccount()
+        {
+            AccountBase selectAccount = null;
+            try
+            {
+                foreach (AccountBase listChecker in accountListing)
+                {
+                    if (listChecker.getAccountOwner() == AcctName.Text && listChecker.getAccountNumber() == Convert.ToInt32(AcctNum.Text))
+                    {
+                        selectAccount = listChecker;
+                    }
+                }
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Account number can only be integer numbers!\n");
+            }
+            return selectAccount;        
+        }
+
+        // Print Details
         private void button1_Click(object sender, EventArgs e)
         {
-            AccountBase listChecker = null;
             try
             {
-                foreach (AccountBase selectAcct in accountListing)
-                {
-                    if (selectAcct.getAccountOwner() == AcctName.Text && selectAcct.getAccountNumber() == Convert.ToInt32(AcctNum.Text))
-                    {
-                            listChecker = selectAcct;
-                    }
-                }
-                if(listChecker == null)
-                {
-                    Console.WriteLine("Please check that you have entered the correct account name and number.\n");
-                }
-                else
-                {
-                    listChecker.printDetails();
-                }
+                selectedAccount().printDetails();
             }
-            catch (FormatException)
+            catch (NullReferenceException)
             {
-                Console.WriteLine("Account number can only be integer numbers!\n");
+                Console.WriteLine(emptySelection());
             }
         }
 
+        //Deposit fund
         private void button3_Click(object sender, EventArgs e)
         {
-            AccountBase listChecker = null;
             try
             {
-                foreach (AccountBase selectAcct in accountListing)
-                {
-                    if (selectAcct.getAccountOwner() == AcctName.Text && selectAcct.getAccountNumber() == Convert.ToInt32(AcctNum.Text))
-                    {
-                        listChecker = selectAcct;
-                    }
-                }
-                if (listChecker == null)
-                {
-                    Console.WriteLine("Please check that you have entered the correct account name and number.\n");
-                }
-                else
-                {
-                    listChecker.deposit(200);
-                }
+                selectedAccount().deposit(200);
             }
-            catch (FormatException)
+            catch (NullReferenceException)
             {
-                Console.WriteLine("Account number can only be integer numbers!\n");
+                Console.WriteLine(emptySelection());
             }
         }
 
+        // Withdraw fund
         private void button4_Click(object sender, EventArgs e)
         {
-            AccountBase listChecker = null;
             try
             {
-                foreach (AccountBase selectAcct in accountListing)
-                {
-                    if (selectAcct.getAccountOwner() == AcctName.Text && selectAcct.getAccountNumber() == Convert.ToInt32(AcctNum.Text))
-                    {
-                        listChecker = selectAcct;
-                    }
-                }
-                if (listChecker == null)
-                {
-                    Console.WriteLine("Please check that you have entered the correct account name and number.\n");
-                }
-                else
-                {
-                    listChecker.withdraw(200);
-                }
+                selectedAccount().withdraw(200);
             }
-            catch (FormatException)
+            catch (NullReferenceException)
             {
-                Console.WriteLine("Account number can only be integer numbers!\n");
+                Console.WriteLine(emptySelection());
             }
         }
 
+        // Close Account
         private void button2_Click(object sender, EventArgs e)
         {
-            AccountBase listChecker = null;
             try
             {
-                foreach (AccountBase selectAcct in accountListing)
-                {
-                    if (selectAcct.getAccountOwner() == AcctName.Text && selectAcct.getAccountNumber() == Convert.ToInt32(AcctNum.Text))
-                    {
-                        listChecker = selectAcct;
-                    }
-                }
-                if (listChecker == null)
-                {
-                    Console.WriteLine("Please check that you have entered the correct account name and number.\n");
-                }
-                else
-                {
-                    Console.WriteLine("CLOSING...\n");
-                    accountListing.Remove(listChecker);
-                    Console.WriteLine("{0} has been removed.\n", listChecker.getAccountOwner());
-                }
+                Console.WriteLine("CLOSING...\n" + selectedAccount().getAccountOwner() + " has been removed.\n");
+                accountListing.Remove(selectedAccount());
             }
-            catch (FormatException)
+            catch (NullReferenceException)
             {
-                Console.WriteLine("Account number can only be integer numbers!\n");
+                Console.WriteLine(emptySelection());
             }
         }
 
+        // Give Bonus
         private void button5_Click(object sender, EventArgs e)
         {
-            AccountBase listChecker = null;
             try
             {
-                foreach (AccountBase selectAcct in accountListing)
+                SavingsAccount savingsAccount = (SavingsAccount)selectedAccount();
+                if(savingsAccount.getBalance() >= 20000)
                 {
-                    if (selectAcct.getAccountOwner() == AcctName.Text && selectAcct.getAccountNumber() == Convert.ToInt32(AcctNum.Text))
-                    {
-                        listChecker = selectAcct;
-                    }
-                }
-                if (listChecker == null)
-                {
-                    Console.WriteLine("Please check that you have entered the correct account name and number.\n");
-                }
-                else if(listChecker.getAccountType() == "Savings Account" && listChecker.getBalance() >= 20000)
-                {
-                    listChecker.deposit(20);
-                    Console.WriteLine("Bonus for high savings account\n");
+                    savingsAccount.deposit(25);
+                    Console.WriteLine("Bonus for high balance record.\n");
                 }
                 else
                 {
-                    Console.WriteLine("You do not have any bonus\n");
+                    Console.WriteLine("No bonuses at the moment.\n");
                 }
             }
-            catch (FormatException)
+            catch (InvalidCastException)
             {
-                Console.WriteLine("Account number can only be integer numbers!\n");
+                Console.WriteLine(accountTypeError());
+            }
+            catch (NullReferenceException)
+            {
+                Console.WriteLine(emptySelection());
             }
         }
 
+        // Earn Interest
         private void button6_Click(object sender, EventArgs e)
         {
-            AccountBase listChecker = null;
             try
             {
-                foreach (AccountBase selectAcct in accountListing)
+                SavingsAccount savingsAccount = (SavingsAccount)selectedAccount();
+                if (savingsAccount.getBalance() >= 20000)
                 {
-                    if (selectAcct.getAccountOwner() == AcctName.Text && selectAcct.getAccountNumber() == Convert.ToInt32(AcctNum.Text))
-                    {
-                        listChecker = selectAcct;
-                    }
-                }
-                if (listChecker == null)
-                {
-                    Console.WriteLine("Please check that you have entered the correct account name and number.\n");
-                }
-                else if (listChecker.getAccountType() == "Savings Account")
-                {
-                    var pointer = accountListing.IndexOf(listChecker);
-                    SavingsAccount a = (SavingsAccount) accountListing[pointer];
-                    a.earnInterest();
+                    savingsAccount.deposit(25);
+                    Console.WriteLine("Interest earned.\n");
                 }
                 else
                 {
-                    Console.WriteLine("You have no interest at the moment.\n");
+                    Console.WriteLine("No Interest earned at the moment.\n");
                 }
             }
-            catch (FormatException)
+            catch (InvalidCastException)
             {
-                Console.WriteLine("Account number can only be integer numbers!\n");
+                Console.WriteLine(accountTypeError());
+            }
+            catch (NullReferenceException)
+            {
+                Console.WriteLine(emptySelection());
             }
         }
 
+        // Charge Fee
         private void button7_Click(object sender, EventArgs e)
         {
-            AccountBase listChecker = null;
             try
             {
-                foreach (AccountBase selectAcct in accountListing)
+                CheckingAccount checkingAccount = (CheckingAccount)selectedAccount();
+                if (checkingAccount.getTransactions() <= 0)
                 {
-                    if (selectAcct.getAccountOwner() == AcctName.Text && selectAcct.getAccountNumber() == Convert.ToInt32(AcctNum.Text))
-                    {
-                        listChecker = selectAcct;
-                    }
-                }
-                if (listChecker == null)
-                {
-                    Console.WriteLine("Please check that you have entered the correct account name and number.\n");
-                }
-                else if (listChecker.getAccountType() == "Checking Account" && listChecker.getTransactions() < 1)
-                {
-                    listChecker.withdraw(35);
-                    Console.WriteLine("Fee for not having enough Checking Account transactions.\n");
+                    checkingAccount.withdraw(35);
+                    Console.WriteLine("Fee for not having enough transaction.\n");
                 }
                 else
                 {
-                    Console.WriteLine("No charges incurred at the moment.\n");
+                    Console.WriteLine("No fees charged at the moment.\n");
                 }
             }
-            catch (FormatException)
+            catch (InvalidCastException)
             {
-                Console.WriteLine("Account number can only be integer numbers!\n");
+                Console.WriteLine(accountTypeError());
+            }
+            catch (NullReferenceException)
+            {
+                Console.WriteLine(emptySelection());
             }
         }
 
+        // Reset Transaction
         private void button8_Click(object sender, EventArgs e)
         {
-            AccountBase listChecker = null;
             try
             {
-                foreach (AccountBase selectAcct in accountListing)
-                {
-                    if (selectAcct.getAccountOwner() == AcctName.Text && selectAcct.getAccountNumber() == Convert.ToInt32(AcctNum.Text))
-                    {
-                        listChecker = selectAcct;
-                    }
-                }
-                if (listChecker == null)
-                {
-                    Console.WriteLine("Please check that you have entered the correct account name and number.\n");
-                }
-                else
-                {
-                    listChecker.resetTransactions(); 
-                }
+                selectedAccount().resetTransactions();
             }
             catch (FormatException)
             {

@@ -58,7 +58,7 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(776, 426);
             this.panel1.TabIndex = 0;
-            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            
             // 
             // button8
             // 
@@ -147,7 +147,6 @@
             this.AcctName.Size = new System.Drawing.Size(146, 30);
             this.AcctName.TabIndex = 1;
             this.AcctName.Text = "Account name";
-            this.AcctName.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // button1
             // 
