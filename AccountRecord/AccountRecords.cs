@@ -133,15 +133,7 @@ namespace AccountRecord
             try
             {
                 SavingsAccount savingsAccount = (SavingsAccount)selectedAccount();
-                if (savingsAccount.getBalance() >= 20000)
-                {
-                    savingsAccount.deposit(25);
-                    Console.WriteLine("Interest earned.\n");
-                }
-                else
-                {
-                    Console.WriteLine("No Interest earned at the moment.\n");
-                }
+                savingsAccount.earnInterest();
             }
             catch (InvalidCastException)
             {
@@ -186,9 +178,9 @@ namespace AccountRecord
             {
                 selectedAccount().resetTransactions();
             }
-            catch (FormatException)
+            catch (NullReferenceException)
             {
-                Console.WriteLine("Account number can only be integer numbers!\n");
+                Console.WriteLine(emptySelection());
             }
         }
     }
