@@ -18,10 +18,8 @@ namespace AccountRecord
 
             //Predicate<AccountBase> accountPredicate = new Predicate<AccountBase>(FindAccount);
 
-            // Using anonymous method
-            AccountBase accountBase = accountList.Find(delegate (AccountBase A) {
-                return A.getAccountOwner() == "Duke";
-            });
+            // Using lambda expression
+            AccountBase accountBase = accountList.Find(A => A.getAccountOwner() == "Duke");
 
             Console.WriteLine("Account owner is: {0}", accountBase.getAccountOwner() );
 
