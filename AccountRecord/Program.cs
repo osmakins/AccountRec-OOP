@@ -16,9 +16,12 @@ namespace AccountRecord
             accountList.Add(new CheckingAccount("Grit", 0));
             accountList.Add(new CheckingAccount("Josh", 500));
 
-            Predicate<AccountBase> accountPredicate = new Predicate<AccountBase>(FindAccount);
+            //Predicate<AccountBase> accountPredicate = new Predicate<AccountBase>(FindAccount);
 
-            AccountBase accountBase = accountList.Find(a => FindAccount(a));
+            // Using anonymous method
+            AccountBase accountBase = accountList.Find(delegate (AccountBase A) {
+                return A.getAccountOwner() == "Duke";
+            });
 
             Console.WriteLine("Account owner is: {0}", accountBase.getAccountOwner() );
 
@@ -26,9 +29,9 @@ namespace AccountRecord
             Console.ReadKey();
         }
 
-        public static bool FindAccount(AccountBase A)
+        /*public static bool FindAccount(AccountBase A)
         {
             return A.getAccountOwner() == "Duke";
-        }
+        }*/
     }
 }
