@@ -33,13 +33,7 @@ namespace AccountRecord
             AccountBase selectAccount = null;
             try
             {
-                foreach (AccountBase listChecker in accountListing)
-                {
-                    if (listChecker.getAccountOwner() == AcctName.Text && listChecker.getAccountNumber() == Convert.ToInt32(AcctNum.Text))
-                    {
-                        selectAccount = listChecker;
-                    }
-                }
+                selectAccount = accountListing.Find(A => A.getAccountOwner() == AcctName.Text && A.getAccountNumber() == Convert.ToInt32(AcctNum.Text));
             }
             catch (FormatException)
             {

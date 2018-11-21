@@ -16,20 +16,10 @@ namespace AccountRecord
             accountList.Add(new CheckingAccount("Grit", 0));
             accountList.Add(new CheckingAccount("Josh", 500));
 
-            //Predicate<AccountBase> accountPredicate = new Predicate<AccountBase>(FindAccount);
-
-            // Using lambda expression
-            AccountBase accountBase = accountList.Find(A => A.getAccountOwner() == "Duke");
-
-            Console.WriteLine("Account owner is: {0}", accountBase.getAccountOwner() );
-
             Application.Run(new AccountRecords(accountList));
             Console.ReadKey();
         }
 
-        /*public static bool FindAccount(AccountBase A)
-        {
-            return A.getAccountOwner() == "Duke";
-        }*/
+        
     }
 }
