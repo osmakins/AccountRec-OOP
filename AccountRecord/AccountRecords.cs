@@ -33,6 +33,7 @@ namespace AccountRecord
             AccountBase selectAccount = null;
             try
             {
+                // Lambda expression.
                 selectAccount = accountListing.Find(A => A.getAccountOwner() == AcctName.Text && A.getAccountNumber() == Convert.ToInt32(AcctNum.Text));
             }
             catch (FormatException)
@@ -111,13 +112,14 @@ namespace AccountRecord
                     Console.WriteLine("No bonuses at the moment.\n");
                 }
             }
-            catch (InvalidCastException)
+            catch (Exception ex)
             {
-                Console.WriteLine(accountTypeError());
-            }
-            catch (NullReferenceException)
-            {
-                Console.WriteLine(emptySelection());
+                if (ex is InvalidCastException)
+                    Console.WriteLine(accountTypeError());
+                else if (ex is NullReferenceException)
+                    Console.WriteLine(emptySelection());
+                else
+                    Console.WriteLine("Unknown error");
             }
         }
 
@@ -129,13 +131,14 @@ namespace AccountRecord
                 SavingsAccount savingsAccount = (SavingsAccount)selectedAccount();
                 savingsAccount.earnInterest();
             }
-            catch (InvalidCastException)
+            catch (Exception ex)
             {
-                Console.WriteLine(accountTypeError());
-            }
-            catch (NullReferenceException)
-            {
-                Console.WriteLine(emptySelection());
+                if (ex is InvalidCastException)
+                    Console.WriteLine(accountTypeError());
+                else if (ex is NullReferenceException)
+                    Console.WriteLine(emptySelection());
+                else
+                    Console.WriteLine("Unknown error");
             }
         }
 
@@ -155,13 +158,14 @@ namespace AccountRecord
                     Console.WriteLine("No fees charged at the moment.\n");
                 }
             }
-            catch (InvalidCastException)
+            catch (Exception ex)
             {
-                Console.WriteLine(accountTypeError());
-            }
-            catch (NullReferenceException)
-            {
-                Console.WriteLine(emptySelection());
+                if (ex is InvalidCastException)
+                    Console.WriteLine(accountTypeError());
+                else if (ex is NullReferenceException)
+                    Console.WriteLine(emptySelection());
+                else
+                    Console.WriteLine("Unknown error");
             }
         }
 

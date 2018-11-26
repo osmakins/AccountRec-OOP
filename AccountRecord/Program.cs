@@ -19,7 +19,5 @@ namespace AccountRecord
             Application.Run(new AccountRecords(accountList));
             Console.ReadKey();
         }
-
-        
     }
 }
